@@ -1,3 +1,5 @@
+richi's Pandaboard JB repo based on Omapzoom stable release branch
+
 Running Android on pandaboard:
 
 Get source:
@@ -9,6 +11,12 @@ cd kernel/
 git apply ../device/ti/richi-panda/panda_omapzoom_kernel_3_0_add_audio_bluetooth_for_ics.patch
 git apply ../device/ti/richi-panda/panda_omapzoom_kernel_3_0_ASOC_ABE_revert.patch
 cd ..
+
+Tool Chain for building Kernel and Drivers
+The Kernel and Driver sources are built using Sourcery G++ Lite 2010q1-202 for ARM GNU/Linux version (This particular version is needed for the AFS to work properly).
+This tool chain can be obtained from http://www.codesourcery.com/sgpp/lite/arm/portal/package6488/public/arm-none-linux-gnueabi/arm-2010q1-202-arm-none-linux-gnueabi-i686-pc-linux-gnu.tar.bz2
+To un-compress it to ~/opt/arm-2010q1
+
 
 
 
@@ -49,5 +57,15 @@ make
 fastboot erase cache
 fastboot flash userdata
 fastboot flashall
+
+
+
+PS.
+
+if you use aosp's old u-boot loader(ex. device/ti/richi-panda/bootloader.bin) to format partitions (by 'fastboot oem format'), there will be a media partion created. You must manually format it to ext4. And add 
+  mount ext4 /dev/block/platform/omap/omap_hsmmc.0/by-name/media /data/media wait rw
+in init.omap4pandaboard.rc to mount it. The /sdcard will be mounted to the media partion.
+If you use new u-boot loader (ex. device/ti/richi-panda/u-boot.bin), there will be no media partion created. The /sdcard will be mounted to /data/media on userdata partion. Remember to adjust 
+BOARD_USERDATAIMAGE_PARTITION_SIZE in BoardConfig.mk according to the size of userdata partion that the u-boot loader reported.
 
 
