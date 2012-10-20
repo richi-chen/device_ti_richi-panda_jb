@@ -30,7 +30,6 @@ HDMI-to-DVI-D on the P1 DVI-D connector
 # Initial setup, part 1: build fastboot
 source build/envsetup.sh
 lunch full_richi_panda-eng
-make fastboot
 
 # Initial setup, part 2:
 # With no SD card inserted, plug USB first, then the power cord,
