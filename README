@@ -44,7 +44,7 @@ fastboot flash bootloader device/ti/richi-panda/u-boot.bin
 
 # Build and flash, part 1: Do a build
 source build/envsetup.sh
-lunch full_richi_panda-eng
+lunch full_richi_panda-userdebug
 make clean (clean build if needed)
 make all_build
 
