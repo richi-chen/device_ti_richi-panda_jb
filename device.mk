@@ -61,6 +61,9 @@ else
 LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
 endif
 
+#to flow down to ti-wpan-products.mk
+BLUETI_ENHANCEMENT := true
+
 #Need to revisit the fastboot copy files
 PRODUCT_COPY_FILES += \
 	$(LOCAL_KERNEL):kernel \
@@ -168,6 +171,12 @@ PRODUCT_PACKAGES += \
 #PRODUCT_PACKAGES += audio.primary.omap4
 #PRODUCT_PACKAGES += audio.hdmi.omap4
 
+# Dolby DD+ Decoder
+ifdef OMAP_ENHANCEMENT
+PRODUCT_PACKAGES += \
+        libstagefright_soft_ddpdec
+endif
+
 # Audioout libs
 #PRODUCT_PACKAGES += libaudioutils
 
@@ -250,6 +259,7 @@ $(call inherit-product, device/ti/richi-panda/proprietary-open/install-binaries.
 $(call inherit-product, device/ti/proprietary-open/wl12xx/wlan/wl12xx-wlan-fw-products.mk)
 $(call inherit-product-if-exists, device/ti/common-open/s3d/s3d-products.mk)
 #$(call inherit-product-if-exists, device/ti/proprietary-open/omap4/ducati-blaze_tablet.mk)
+#$(call inherit-product-if-exists, device/ti/proprietary-open/omap4/dsp_fw.mk)
 $(call inherit-product-if-exists, device/ti/richi-panda/proprietary-open/ducati-full_richi_panda.mk)
 
 # clear OMAP_ENHANCEMENT variables

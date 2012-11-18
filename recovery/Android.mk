@@ -1,4 +1,4 @@
-ifeq ($(TARGET_DEVICE),richi-panda)
+ifneq (,$(findstring $(TARGET_DEVICE),richi-panda))
 
 LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)

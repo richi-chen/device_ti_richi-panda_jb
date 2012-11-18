@@ -15,3 +15,4 @@
 #
 
 add_lunch_combo full_richi_panda-eng
+add_lunch_combo full_richi_panda-userdebug
