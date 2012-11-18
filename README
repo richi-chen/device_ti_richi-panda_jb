@@ -29,7 +29,7 @@ HDMI-to-DVI-D on the P1 DVI-D connector
 
 # Initial setup, part 1: build fastboot
 source build/envsetup.sh
-lunch full_richi_panda-eng
+lunch full_richi_panda-userdebug
 
 # Initial setup, part 2:
 # With no SD card inserted, plug USB first, then the power cord,
@@ -46,9 +46,7 @@ fastboot flash bootloader device/ti/richi-panda/u-boot.bin
 source build/envsetup.sh
 lunch full_richi_panda-eng
 make clean (clean build if needed)
-make
-make kernel_build
-make
+make all_build
 
 # Build and flash, part 2: Flash
 # Reboot into the SD card's fastboot (hold GPIO_121 and press PWRON_RESET)
