@@ -27,6 +27,8 @@ on post-fs-data
         chown drmrpc drmrpc /data/smc/storage.bin
         chown drmrpc drmrpc /data/smc/system.bin
 
+	mkdir /data/misc/eth 0770 eth wifi
+
 	# camera calibration
 	mkdir /data/misc/camera 0770 media media
 	mkdir /data/misc/camera/R5_MVEN003_LD2_ND0_IR0_SH0_FL1_SVEN003_DCCID1044 0770 media media
@@ -209,7 +211,7 @@ service wpa_supplicant /system/bin/wpa_supplicant \
 	disabled
 	oneshot
 
-service dhcpcd_wlan0 /system/bin/dhcpcd -ABKL
+service dhcpcd_wlan0 /system/bin/dhcpcd -aABKL
 	class main
 	disabled
 	oneshot
@@ -234,7 +236,17 @@ service dhcpcd_eth0 /system/bin/dhcpcd -ABKL
 	disabled
 	oneshot
 
+service dhcpcd_eth1 /system/bin/dhcpcd -ABKL
+	class main
+	disabled
+	oneshot
+
 service iprenew_eth0 /system/bin/dhcpcd -n
+	class main
+    disabled
+    oneshot
+
+service iprenew_eth1 /system/bin/dhcpcd -n
 	class main
     disabled
     oneshot
@@ -255,13 +267,42 @@ service hostapd_bin /system/bin/hostapd -d /data/misc/wifi/hostapd.conf
 	disabled
 	oneshot
 
-on property:init.svc.smc_pa=stopped
-	start tf_daemon
-
-on property:wlan.driver.status=ok
-    chown wifi wifi /sys/devices/platform/wl1271/bt_coex_state
-
-service navl_server /system/bin/navd --android_log NAVD  -p3 -nav\"-c/system/etc/gps/config/pathconfigfile.txt\"
+service devproxy /system/bin/devproxy
 	class main
 	disabled
 	oneshot
+
+service agnss_connect /system/bin/agnss_connect -p
+	class main
+	disabled
+	oneshot
+
+service RXN_IntApp /system/bin/RXN_IntApp /system/etc/gnss/RXN/MSLConfig.txt
+	class main
+	disabled
+	oneshot
+
+service cplc_main /system/bin/cplc_main XML
+	class main
+	disabled
+	oneshot
+
+service supl20clientd /system/bin/supl20clientd
+	class main
+	oneshot
+
+on property:init.svc.smc_pa=stopped
+	start tf_daemon
+
+# Texas Instruments Shared Memory Service
+service shm_service /system/bin/shm_service --no-fork
+	class core
+	user system
+	group system
+
+# Texas Instruments Augmented Reality X-celerator Daemon
+service arxd /system/bin/arxd
+	class main
+	user system
+	group drmrpc
+	ioprio rt 4

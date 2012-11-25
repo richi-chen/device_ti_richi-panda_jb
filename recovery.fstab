@@ -5,7 +5,7 @@
 /cache		ext4		/dev/block/platform/omap/omap_hsmmc.0/by-name/cache
 /data		ext4		/dev/block/platform/omap/omap_hsmmc.0/by-name/userdata
 /media		ext4		/dev/block/platform/omap/omap_hsmmc.0/by-name/media
-/boot		mtd			boot
-/recovery	mtd			recovery
-/bootloader	mtd			bootloader
-/xloader	mtd			xloader
+/boot		emmc		/dev/block/platform/omap/omap_hsmmc.0/by-name/boot
+/recovery	emmc		/dev/block/platform/omap/omap_hsmmc.0/by-name/recovery
+/bootloader	emmc		/dev/block/platform/omap/omap_hsmmc.0/by-name/bootloader
+/xloader	emmc		/dev/block/platform/omap/omap_hsmmc.0/by-name/xloader

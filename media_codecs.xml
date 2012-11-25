@@ -111,22 +111,6 @@ Only the three quirks included above are recognized at this point:
             <Quirk name="needs-flush-before-disable" />
             <Quirk name="requires-flush-complete-emulation" />
         </MediaCodec>
-
-        <MediaCodec name="OMX.ITTIAM.WMA.decode" >
-            <Type name="audio/wma" />
-            <Quirk name="needs-flush-before-disable" />
-            <Quirk name="requires-flush-complete-emulation" />
-        </MediaCodec>
-        <MediaCodec name="OMX.ITTIAM.WMALSL.decode" >
-            <Type name="audio/wmalsl" />
-            <Quirk name="needs-flush-before-disable" />
-            <Quirk name="requires-flush-complete-emulation" />
-        </MediaCodec>
-        <MediaCodec name="OMX.ITTIAM.WMAPRO.decode" >
-            <Type name="audio/wmapro" />
-            <Quirk name="needs-flush-before-disable" />
-            <Quirk name="requires-flush-complete-emulation" />
-        </MediaCodec>
     </Decoders>
 
     <Encoders>

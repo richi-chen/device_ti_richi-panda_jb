@@ -22,10 +22,15 @@ include device/ti/richi-panda/Config.mk
 BOARD_USES_GENERIC_AUDIO := true
 USE_CAMERA_STUB := true
 
+# Default values, possibly overridden by BoardConfigVendor.mk
+TARGET_BOARD_INFO_FILE := device/ti/richi-panda/board-info.txt
+
 OMAP_ENHANCEMENT_MULTIGPU := true
 
 ENHANCED_DOMX := true
 BLTSVILLE_ENHANCEMENT :=true
+BOARD_USES_DVP := true
+BOARD_USES_ARX := true
 #USE_ITTIAM_AAC := true
 # Use the non-open-source parts, if they're present
 -include vendor/ti/panda/BoardConfigVendor.mk
@@ -43,6 +48,7 @@ BLUETI_ENHANCEMENT := true
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_CPU_SMP := true
+TARGET_ARCH:= arm
 TARGET_ARCH_VARIANT := armv7-a-neon
 ARCH_ARM_HAVE_TLS_REGISTER := true
 
@@ -51,8 +57,6 @@ TARGET_NO_BOOTLOADER := true
 
 BOARD_KERNEL_BASE := 0x80000000
 # BOARD_KERNEL_CMDLINE
-#BOARD_KERNEL_CMDLINE := console=ttyO2,115200n8 mem=1024M@0x80000000 init=/init androidboot.console=ttyO2
-#BOARD_KERNEL_CMDLINE := console=ttyO2,115200n8 rootwait ro earlyprintk fixrtc nocompcache vram=48M omapfb.vram=0:24M mem=456M@0x80000000 mem=512M@0xA0000000 omapfb.mode=dvi:1920x1080MR-24@60 init=/init androidboot.console=ttyO2
 
 TARGET_NO_RADIOIMAGE := true
 TARGET_BOARD_PLATFORM := omap4
@@ -84,6 +88,9 @@ BOARD_FLASH_BLOCK_SIZE := 4096
 #TARGET_PROVIDES_INIT_RC := true
 #TARGET_USERIMAGES_SPARSE_EXT_DISABLED := true
 
+#NFC
+NFC_TI_DEVICE := true
+
 # Connectivity - Wi-Fi
 USES_TI_MAC80211 := true
 ifdef USES_TI_MAC80211
@@ -101,7 +108,9 @@ endif
 ifdef BLUETI_ENHANCEMENT
 COMMON_GLOBAL_CFLAGS += -DBLUETI_ENHANCEMENT
 endif
-
+ifdef NFC_TI_DEVICE
+COMMON_GLOBAL_CFLAGS += -DNFC_JNI_TI_DEVICE
+endif
 #Set 32 byte cache line to true
 ARCH_ARM_HAVE_32_BYTE_CACHE_LINES := true
 

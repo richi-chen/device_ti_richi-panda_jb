@@ -44,7 +44,7 @@ PRODUCT_COPY_FILES += \
 endif
 
 PRODUCT_PACKAGES += \
-    CameraOMAP4 \
+    CameraOMAP \
     Camera \
     camera_test
 
@@ -153,6 +153,7 @@ PRODUCT_PACKAGES += \
 	dhcpcd.conf \
 	hostapd.conf \
 	wifical.sh \
+	wilink7.sh \
 	TQS_D_1.7.ini \
 	TQS_D_1.7_127x.ini \
 	crda \
@@ -199,7 +200,11 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
     frameworks/native/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
     packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:system/etc/permissions/android.software.live_wallpaper.xml \
-    device/ti/richi-panda/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml
+    device/ti/richi-panda/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
+        frameworks/native/data/etc/android.hardware.nfc.xml:system/etc/permissions/android.hardware.nfc.xml \
+        frameworks/base/nfc-extras/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfcextras.xml \
+        frameworks/native/data/etc/com.nxp.mifare.xml:system/etc/permissions/com.nxp.mifare.xml \
+        device/ti/omap5sevm/nfcee_access.xml:system/etc/nfcee_access.xml \
 #	frameworks/base/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
 #	frameworks/base/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml \
 #	frameworks/base/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
@@ -261,6 +266,8 @@ $(call inherit-product-if-exists, device/ti/common-open/s3d/s3d-products.mk)
 #$(call inherit-product-if-exists, device/ti/proprietary-open/omap4/ducati-blaze_tablet.mk)
 #$(call inherit-product-if-exists, device/ti/proprietary-open/omap4/dsp_fw.mk)
 $(call inherit-product-if-exists, device/ti/richi-panda/proprietary-open/ducati-full_richi_panda.mk)
+$(call inherit-product-if-exists, hardware/ti/dvp/dvp-products.mk)
+$(call inherit-product-if-exists, hardware/ti/arx/arx-products.mk)
 
 # clear OMAP_ENHANCEMENT variables
 $(call ti-clear-vars)

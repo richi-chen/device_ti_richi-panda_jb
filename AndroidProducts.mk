@@ -29,7 +29,7 @@
 include device/ti/richi-panda/Config.mk
 
 PRODUCT_MAKEFILES := \
-	$(LOCAL_DIR)/full_panda.mk
+	$(LOCAL_DIR)/full_richi_panda.mk
 
 ifdef OMAP_ENHANCEMENT_CPCAM
 PRODUCT_MAKEFILES += \
