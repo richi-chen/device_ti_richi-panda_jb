@@ -79,7 +79,9 @@ PRODUCT_COPY_FILES += \
 	device/ti/richi-panda/media_codecs.xml:system/etc/media_codecs.xml \
 	device/ti/richi-panda/cyttsp4-i2c.idc:system/usr/idc/cyttsp4-i2c.idc \
 	device/ti/richi-panda/wallpaper_info.xml:data/system/wallpaper_info.xml \
-	frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml
+	frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
+	device/ti/richi-panda/Vendor_0471_Product_0815.kl:system/usr/keylayout/Vendor_0471_Product_0815.kl \
+	device/ti/richi-panda/Vendor_0609_Product_031d.kl:system/usr/keylayout/Vendor_0609_Product_031d.kl
 #	frameworks/base/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
 #	frameworks/base/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
 #	frameworks/base/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \

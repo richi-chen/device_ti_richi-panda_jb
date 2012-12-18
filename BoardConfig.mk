@@ -40,7 +40,7 @@ KERNEL_CONFIG := richi-panda_defconfig
 
 # TI config
 CFG_FM_SERVICE_TI := yes
-#TI_OMAP4_CAMERAHAL_VARIANT := true
+TI_OMAP4_CAMERAHAL_VARIANT := true
 
 # TI's Bluetooth stack based on BlueZ
 BLUETI_ENHANCEMENT := true
