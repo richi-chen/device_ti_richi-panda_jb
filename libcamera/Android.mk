@@ -1,39 +1,35 @@
-LOCAL_PATH:= $(call my-dir)
+ifeq ($(USE_CAMERA_STUB),false)
 
-include $(LOCAL_PATH)/android-api.mk
-
+LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
-# HAL module implemenation stored in
-# hw/<COPYPIX_HARDWARE_MODULE_ID>.<ro.product.board>.so
+
+LOCAL_CFLAGS := -fno-short-enums -DHAVE_CONFIG_H
+
+LOCAL_C_INCLUDES := \
+	external/jpeg
+
+LOCAL_SRC_FILES := \
+	CameraFactory.cpp \
+	CameraHal.cpp \
+	CameraHardware.cpp \
+	Converter.cpp \
+	SurfaceDesc.cpp \
+	SurfaceSize.cpp \
+	Utils.cpp \
+	V4L2Camera.cpp \
+
+LOCAL_SHARED_LIBRARIES := \
+	libcamera_client \
+	libcutils \
+	libjpeg \
+	liblog \
+	libui \
+	libutils \
+
+LOCAL_MODULE := camera.$(TARGET_BOARD_PLATFORM)
+LOCAL_MODULE_TAGS := optional
 LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)/hw
 
-LOCAL_C_INCLUDES += $(LOCAL_PATH)\
-	external/jpeg \
-	external/jhead
-
-LOCAL_SRC_FILES:= \
-    SecCamera.cpp \
-    SecCameraHWInterface.cpp \
-    Encoder_jpeg.cpp
-
-LOCAL_SHARED_LIBRARIES:= libutils \
-			libcutils \
-			libbinder \
-			liblog \
-			libcamera_client \
-			libhardware \
-			libjpeg \
-			libexif
-
-LOCAL_MODULE := camera.omap4
-
-LOCAL_MODULE_TAGS := optional
-
-LOCAL_CFLAGS += $(ANDROID_API_CFLAGS)
-ifeq ($(MARVELL_SOFTWARE_ENCODER),true)
-LOCAL_CFLAGS += -DMARVELL_SOFTWARE_ENCODER
-endif
-
-$(clear-android-api-vars)
-
 include $(BUILD_SHARED_LIBRARY)
+
+endif

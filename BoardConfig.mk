@@ -20,7 +20,7 @@ include device/ti/richi-panda/Config.mk
 # These two variables are set first, so they can be overridden
 # by BoardConfigVendor.mk
 BOARD_USES_GENERIC_AUDIO := true
-USE_CAMERA_STUB := true
+USE_CAMERA_STUB := false
 
 # Default values, possibly overridden by BoardConfigVendor.mk
 TARGET_BOARD_INFO_FILE := device/ti/richi-panda/board-info.txt
